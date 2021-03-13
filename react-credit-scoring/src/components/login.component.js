@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, useState} from "react";
 import axios from "axios";
 
 export default class Login extends Component {
@@ -23,23 +23,31 @@ export default class Login extends Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit} >
-                <h3>Login</h3>
+            <div class="form-container">
+                <div class="login">
+                    <form onSubmit={this.handleSubmit}>
+                        <h3>Login</h3>
 
-                <div className="form-group">
-                    <label>Email</label>
-                    <input type="email" className="form-control" placeholder="Email"
-                           onChange={e => this.email = e.target.value}/>
+                        <div className="form-group">
+                            <label>Email</label>
+                            <div className="input-field">
+                                <input type="email" className="form-control" placeholder="Email"
+                                       onChange={e => this.email = e.target.value}/>
+                            </div>
+                        </div>
+
+                        <div className="form-group">
+                            <label>Password</label>
+                            <div className="input-field">
+                                <input type="password" className="form-control" placeholder="Password"
+                                       onChange={e => this.password = e.target.value}/>
+                            </div>
+                        </div>
+                        <button className="btn btn-primary btn-block">Login</button>
+                    </form>
                 </div>
+            </div>
 
-                <div className="form-group">
-                    <label>Password</label>
-                    <input type="password" className="form-control" placeholder="Password"
-                           onChange={e => this.password = e.target.value}/>
-                </div>
-
-                <button className="btn btn-primary btn-block">Login</button>
-            </form>
         )
     }
 }
