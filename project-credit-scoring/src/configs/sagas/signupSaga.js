@@ -11,7 +11,7 @@ import {
 import {put, takeLatest} from "redux-saga/effects"
 
 function* findAllAccountSaga() {
-    let result = yield axios.get("/users")
+    let result = yield axios.get("/master")
         .then(data => {
             return ({
                 type: FIND_ALL_ACCOUNT_SUCCESS,
@@ -30,7 +30,7 @@ function* findAllAccountSaga() {
 
 function* saveAccountSaga(action) {
     let model = action.model;
-    let method = 'POST', url = '/auth/signup';
+    let method = 'POST', url = '/master/signup';
     if (model.id) {
         method = "PATCH";
         url += `/${model.id}`
@@ -57,7 +57,7 @@ function* saveAccountSaga(action) {
 }
 
 function* findAccountByIdSaga(action) {
-    let result = yield axios.get(`/users/${action.id}`)
+    let result = yield axios.get(`/master/${action.id}`)
         .then(data => {
             return ({
                 type: FIND_ALL_ACCOUNT_SUCCESS,
@@ -83,7 +83,7 @@ function* updateAccountSaga(action) {
 }
 
 function* removeAccountById(action) {
-    let result = yield axios.delete(`/users/${action.id}`)
+    let result = yield axios.delete(`/master/${action.id}`)
         .then(data => {
             console.log("ini action", data)
             return ({
