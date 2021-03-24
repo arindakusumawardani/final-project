@@ -1,5 +1,11 @@
 import { all } from "redux-saga/effects";
-import {watchFindAllCustomer, watchFindCustomerById, watchSaveCustomer, watchUpdateCustomer} from "./customerSaga";
+import {
+  watchFindAllCustomer,
+  watchFindAllCustomerBySubmitter,
+  watchFindCustomerById,
+  watchSaveCustomer,
+  watchUpdateCustomer
+} from "./customerSaga";
 import {
   watchFindAllTransaction,
   watchFindTransactionById,
@@ -16,6 +22,7 @@ import {
 } from "./signupSaga";
 import {watchFindAllReport} from "./reportSaga";
 import {watchSaveApproval} from "./approvalSaga";
+import {watchFindAllNeed, watchSaveNeed} from "./needSaga";
 
 export default function* rootSaga() {
   yield all([
@@ -41,5 +48,10 @@ export default function* rootSaga() {
     watchFindAllReport(),
 
     watchSaveApproval(),
+
+    watchFindAllCustomerBySubmitter(),
+
+    watchSaveNeed(),
+    watchFindAllNeed()
   ])
 }

@@ -13,7 +13,7 @@ import {
 
 function* findAllTransactionSaga(data) {
 
-    let result = yield axios.get("/transaction")
+    let result = yield axios.get("/approval/waiting")
         .then (data => {
             return ({
                 type : FIND_ALL_TRANSACTION_SUCCESS,

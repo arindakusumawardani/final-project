@@ -1,5 +1,5 @@
 
-import axios from "axios";
+import axios from "../api";
 import {put, takeLatest} from "redux-saga/effects";
 import {FIND_ALL_REPORT, FIND_ALL_REPORT_FAILURE, FIND_ALL_REPORT_SUCCESS} from "../constants/actions";
 

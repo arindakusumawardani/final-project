@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../api";
 import {
     FIND_ACCOUNT_BY_ID,
     FIND_ALL_ACCOUNT,
@@ -11,7 +11,7 @@ import {
 import {put, takeLatest} from "redux-saga/effects"
 
 function* findAllAccountSaga() {
-    let result = yield axios.get("/users")
+    let result = yield axios.get("/master")
         .then(data => {
             return ({
                 type: FIND_ALL_ACCOUNT_SUCCESS,
@@ -30,7 +30,7 @@ function* findAllAccountSaga() {
 
 function* saveAccountSaga(action) {
     let model = action.model;
-    let method = 'POST', url = '/auth/signup';
+    let method = 'POST', url = '/master/signup';
     if (model.id) {
         method = "PATCH";
         url += `/${model.id}`

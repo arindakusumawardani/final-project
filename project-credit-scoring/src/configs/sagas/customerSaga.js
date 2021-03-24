@@ -12,7 +12,7 @@ import {
   FIND_CUSTOMER_BY_ID_FAILURE,
   FIND_CUSTOMER_BY_ID_SUCCESS,
 
-  UPDATE_CUSTOMER
+  UPDATE_CUSTOMER, FIND_CUSTOMER_BY_SUBMITTER_SUCCESS, FIND_CUSTOMER_BY_SUBMITTER_FAILURE
 
 } from "../constants/actions"
 import axios from "../api"
@@ -79,6 +79,23 @@ function* findCustomerByIdSaga(action) {
   yield put(result)
 }
 
+function* findCustomerByStaffSaga(action) {
+  let result = yield axios.get('/customer/staff')
+      .then(data => {
+        return ({
+          type: FIND_CUSTOMER_BY_SUBMITTER_SUCCESS,
+          data: data
+        })
+      })
+      .catch(e => {
+        return ({
+          type: FIND_CUSTOMER_BY_SUBMITTER_FAILURE,
+          error: e
+        })
+      })
+  yield put(result)
+}
+
 function* updateCustomerSaga(action) {
   let result = false
 
@@ -103,4 +120,8 @@ export function* watchFindCustomerById() {
 
 export function* watchUpdateCustomer() {
   yield takeLatest(UPDATE_CUSTOMER, updateCustomerSaga)
+}
+
+export function* watchFindAllCustomerBySubmitter() {
+  yield takeLatest(FIND_ALL_CUSTOMER, findCustomerByStaffSaga)
 }
