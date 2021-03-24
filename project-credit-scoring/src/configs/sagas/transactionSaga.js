@@ -32,10 +32,6 @@ function* findAllTransactionSaga(data) {
 function* saveTransactionSaga(action) {
     let model = action.model
     let method = 'POST', url = '/transaction';
-    if (model.id) {
-        method = "PUT";
-        url += `/${model.id}`
-    }
 
     let result = yield axios ({
         url: url,
