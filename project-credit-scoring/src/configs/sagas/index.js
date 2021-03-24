@@ -21,7 +21,7 @@ import {
   watchUpdateAccountById
 } from "./signupSaga";
 import {watchFindAllReport} from "./reportSaga";
-import {watchSaveApproval} from "./approvalSaga";
+import {watchFindAllApproval, watchFindApprovalById, watchSaveApproval} from "./approvalSaga";
 import {watchFindAllNeed, watchSaveNeed} from "./needSaga";
 
 export default function* rootSaga() {
@@ -48,6 +48,8 @@ export default function* rootSaga() {
     watchFindAllReport(),
 
     watchSaveApproval(),
+    watchFindAllApproval(),
+    watchFindApprovalById(),
 
     watchFindAllCustomerBySubmitter(),
 
